@@ -11,12 +11,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
   <!-- Preload Initial Video Frames for Instant Apple-Grade Rendering -->
-  <link rel="preload" as="image" href="assets/bg_video/frames/ezgif-frame-001.jpg" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/bg_video/frames/ezgif-frame-002.jpg">
-  <link rel="preload" as="image" href="assets/bg_video/frames/ezgif-frame-003.jpg">
+  <link rel="preload" as="image" href="assets/ds_frames/frame_0001.jpeg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/ds_frames/frame_0002.jpeg">
+  <link rel="preload" as="image" href="assets/ds_frames/frame_0003.jpeg">
 
-  <!-- Icons -->
+  <!-- Icons & Smooth Scroll -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
 
   <style>
     :root {
@@ -1661,124 +1663,93 @@
       mix-blend-mode: overlay;
     }
 
-    /* Clean Floating Hero Headline (Synchronized Reveal) */
+    /* Clean Professional Hero Panel (Synchronized Reveal) */
     .animbits-image-text-wrap {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
-      max-width: 1050px;
-      width: 92%;
-      padding: 0;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
+      max-width: 950px;
+      width: 90%;
+      padding: 42px 40px;
+      background: rgba(6, 6, 14, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.75), 0 0 50px rgba(192, 254, 4, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       z-index: 10;
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.4s ease, transform 0.4s ease;
       will-change: opacity, transform;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* LoaderGlitchText Cyberpunk Glitch Effect */
-    .loader-glitch-title {
-      position: relative;
-      display: inline-block;
+    .hero-badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      border-radius: 30px;
+      background: rgba(192, 254, 4, 0.08);
+      border: 1px solid rgba(192, 254, 4, 0.3);
+      color: var(--accent);
       font-family: var(--font-display);
-      font-size: clamp(26px, 4.2vw, 56px);
-      font-weight: 800;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    .hero-main-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4.5vw, 58px);
+      font-weight: 900;
       line-height: 1.15;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin: 0;
+      letter-spacing: -0.01em;
       color: #ffffff;
-      text-shadow: 0 4px 25px rgba(0, 0, 0, 0.98), 0 0 40px rgba(0, 0, 0, 0.9);
+      margin: 0 0 14px 0;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
     }
 
-    .loader-glitch-title::before,
-    .loader-glitch-title::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-      pointer-events: none;
+    .hero-main-title .highlight-accent {
+      background: linear-gradient(135deg, #c0fe04 0%, #00f5ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(192, 254, 4, 0.4));
     }
 
-    .loader-glitch-title::before {
-      left: 3px;
-      text-shadow: -2px 0 #00f5ff;
-      animation: glitchAnimCyan 3s infinite linear alternate-reverse;
-      opacity: 0.75;
-    }
-
-    .loader-glitch-title::after {
-      left: -3px;
-      text-shadow: -2px 0 #ff0055;
-      animation: glitchAnimMagenta 2.5s infinite linear alternate-reverse;
-      opacity: 0.75;
-    }
-
-    @keyframes glitchAnimCyan {
-      0% { clip-path: inset(10% 0 80% 0); transform: translate(-2px, 1px); }
-      20% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -1px); }
-      40% { clip-path: inset(30% 0 50% 0); transform: translate(-1px, 2px); }
-      60% { clip-path: inset(80% 0 5% 0); transform: translate(1px, -2px); }
-      80% { clip-path: inset(5% 0 75% 0); transform: translate(-2px, -1px); }
-      100% { clip-path: inset(45% 0 40% 0); transform: translate(2px, 1px); }
-    }
-
-    @keyframes glitchAnimMagenta {
-      0% { clip-path: inset(65% 0 15% 0); transform: translate(2px, -1px); }
-      20% { clip-path: inset(15% 0 70% 0); transform: translate(-2px, 1px); }
-      40% { clip-path: inset(85% 0 5% 0); transform: translate(1px, -1px); }
-      60% { clip-path: inset(25% 0 60% 0); transform: translate(-1px, 2px); }
-      80% { clip-path: inset(50% 0 35% 0); transform: translate(2px, -2px); }
-      100% { clip-path: inset(5% 0 80% 0); transform: translate(-2px, 1px); }
-    }
-
-    .loader-glitch-subtext {
-      position: relative;
-      display: inline-block;
+    .hero-main-subtext {
       font-family: var(--font-display);
-      font-size: clamp(18px, 3.2vw, 38px);
-      margin-top: 14px;
-      font-weight: 800;
-      color: #c0fe04;
-      letter-spacing: 0.14em;
+      font-size: clamp(14px, 1.8vw, 20px);
+      font-weight: 700;
+      color: var(--ink);
+      opacity: 0.9;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.98), 0 0 25px rgba(192, 254, 4, 0.85);
-    }
-
-    .loader-glitch-subtext::before,
-    .loader-glitch-subtext::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-      pointer-events: none;
-    }
-
-    .loader-glitch-subtext::before {
-      left: 2px;
-      text-shadow: -2px 0 #00f5ff;
-      animation: glitchAnimCyan 2.8s infinite linear alternate-reverse;
-      opacity: 0.8;
-    }
-
-    .loader-glitch-subtext::after {
-      left: -2px;
-      text-shadow: -2px 0 #ff0055;
-      animation: glitchAnimMagenta 2.2s infinite linear alternate-reverse;
-      opacity: 0.8;
+      margin: 0;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     }
 
     /* Storytelling narrative card for mid-scroll video frame sequence */
@@ -2467,6 +2438,7 @@
   </nav>
 
   <!-- Pure Video Frame Scroll Visual Stage -->
+  <div id="home"></div>
   <div id="top"></div>
   <div id="scroll-track">
     <div id="stage">
@@ -2477,15 +2449,18 @@
       <div class="hero-vignette-overlay"></div>
       <div class="hero-noise-blend"></div>
 
-      <!-- Overlay animbits Image-Text Component Headline & Scroll Hint -->
+      <!-- Overlay Hero Headline Card & Scroll Hint -->
       <div class="hero-copy">
         <div class="animbits-image-text-wrap" id="hero-special-badge" style="opacity: 0;">
-          <h1 class="loader-glitch-title" data-text="BUILDING INTELLIGENT SOLUTIONS">
-            BUILDING INTELLIGENT SOLUTIONS
+          <div class="hero-badge-tag">
+            <span class="badge-dot"></span> CREATIVE AI GENERALIST
+          </div>
+          <h1 class="hero-main-title">
+            BUILDING <span class="highlight-accent">INTELLIGENT SOLUTIONS</span>
           </h1>
-          <span class="loader-glitch-subtext" data-text="WITH THE WORLD'S LEADING AI TOOLS">
+          <p class="hero-main-subtext">
             WITH THE WORLD'S LEADING AI TOOLS
-          </span>
+          </p>
         </div>
 
         <div class="scroll-hint-wrap">
@@ -3130,15 +3105,15 @@
     // --- Apple-Style Scroll-Driven Video Frame Scrubbing Engine ---
     const heroCanvas = document.getElementById('hero-frame-canvas');
     const heroCtx = heroCanvas ? heroCanvas.getContext('2d', { alpha: false }) : null;
-    const totalHeroFrames = 235;
-    const loadedHeroFrames = [];
+    const totalHeroFrames = 1000;
+    const loadedHeroFrames = new Array(totalHeroFrames);
     let currentHeroFrameIndex = 0;
     let targetHeroFrameIndex = 0;
     let isInitialFrameRendered = false;
 
     function formatFramePath(index) {
-      const paddedIndex = String(index + 1).padStart(3, '0');
-      return `assets/bg_video/frames/ezgif-frame-${paddedIndex}.jpg`;
+      const paddedIndex = String(index + 1).padStart(4, '0');
+      return `assets/ds_frames/frame_${paddedIndex}.jpeg`;
     }
 
     function preloadHeroFrames() {
@@ -3146,11 +3121,11 @@
         const img = new Image();
         img.src = formatFramePath(i);
         img.onload = () => {
-          if (heroCtx && (i === 0 || Math.abs(i - currentHeroFrameIndex) < 1)) {
+          if (heroCtx && (i === 0 || Math.abs(i - currentHeroFrameIndex) < 2)) {
             renderHeroCanvasFrame(currentHeroFrameIndex);
           }
         };
-        loadedHeroFrames.push(img);
+        loadedHeroFrames[i] = img;
       }
     }
     preloadHeroFrames();
@@ -3213,13 +3188,65 @@
     window.addEventListener('resize', resizeHeroCanvas, { passive: true });
     resizeHeroCanvas();
 
+    // --- Apple-Grade Lenis Smooth Scroll Engine ---
+    let lenis = null;
+    if (typeof Lenis !== 'undefined') {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.5,
+      });
+
+      function lenisRaf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(lenisRaf);
+      }
+      requestAnimationFrame(lenisRaf);
+
+      lenis.on('scroll', () => {
+        updateScroll();
+      });
+    }
+
     function updateScroll() {
-      const trackHeight = document.getElementById('scroll-track').offsetHeight - window.innerHeight;
-      targetScrollProgress = trackHeight > 0 ? Math.min(Math.max(window.scrollY / trackHeight, 0), 1) : 0;
+      const scrollTrack = document.getElementById('scroll-track');
+      if (!scrollTrack) return;
+      const trackHeight = scrollTrack.offsetHeight - window.innerHeight;
+      const scrollY = lenis ? lenis.scroll : window.scrollY;
+      targetScrollProgress = trackHeight > 0 ? Math.min(Math.max(scrollY / trackHeight, 0), 1) : 0;
     }
 
     window.addEventListener('scroll', updateScroll, { passive: true });
     updateScroll();
+
+    // Apple-grade smooth navigation link targeting
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href && href !== '#') {
+          if (href === '#home' || href === '#top') {
+            e.preventDefault();
+            if (lenis) {
+              lenis.scrollTo(0, { duration: 1.2 });
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            return;
+          }
+          const targetEl = document.querySelector(href);
+          if (targetEl) {
+            e.preventDefault();
+            if (lenis) {
+              lenis.scrollTo(targetEl, { offset: -80, duration: 1.2 });
+            } else {
+              targetEl.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }
+      });
+    });
 
     // Clock to keep track of elapsed time for animations
     const clock = new THREE.Clock();
@@ -3264,8 +3291,8 @@
     animate();
 
     // Custom Upgraded Interactive Cursor logic
-    const cursorEl = document.querySelector('.custom-cursor');
-    const cursorDotEl = document.querySelector('.custom-cursor-dot');
+    const cursorEl = document.querySelector('.gaming-cursor') || document.querySelector('.custom-cursor');
+    const cursorDotEl = document.querySelector('.crosshair-center-diamond') || document.querySelector('.custom-cursor-dot');
     const cursorIconEl = document.querySelector('.custom-cursor-icon');
 
     let curX = 0, curY = 0;
@@ -3312,32 +3339,32 @@
       const magneticTarget = target.closest('.nav-links a, .logo, .nav-cta, .slider-arrows button, .slider-nav button, .form-btn, .social-links a, footer a, .cta');
       if (magneticTarget) {
         snappedEl = magneticTarget;
-        cursorEl.classList.add('is-magnetic');
-        cursorDotEl.classList.add('is-magnetic');
+        if (cursorEl) cursorEl.classList.add('is-magnetic');
+        if (cursorDotEl) cursorDotEl.classList.add('is-magnetic');
         return;
       }
 
       // Work case hover trigger
       const workTarget = target.closest('.work-card, .fs-media-frame, .fs-thumb');
       if (workTarget) {
-        cursorEl.classList.add('is-viewing-card');
-        cursorDotEl.classList.add('is-viewing-card');
+        if (cursorEl) cursorEl.classList.add('is-viewing-card');
+        if (cursorDotEl) cursorDotEl.classList.add('is-viewing-card');
         return;
       }
 
       // Text inputs trigger
       const textTarget = target.closest('.form-input, textarea, select');
       if (textTarget) {
-        cursorEl.classList.add('is-text');
-        cursorDotEl.classList.add('is-text');
+        if (cursorEl) cursorEl.classList.add('is-text');
+        if (cursorDotEl) cursorDotEl.classList.add('is-text');
         return;
       }
 
       // General interactive hover trigger
       const hoverTarget = target.closest('a, button, [role="button"], .fs-icon-btn, .fs-scroll-change-btn');
       if (hoverTarget) {
-        cursorEl.classList.add('is-hovering');
-        cursorDotEl.classList.add('is-hovering');
+        if (cursorEl) cursorEl.classList.add('is-hovering');
+        if (cursorDotEl) cursorDotEl.classList.add('is-hovering');
         return;
       }
     });
@@ -3349,24 +3376,24 @@
 
       if (snappedEl && (!related || !related.closest || related.closest('.nav-links a, .logo, .nav-cta, .slider-arrows button, .slider-nav button, .form-btn, .social-links a, footer a, .cta') !== snappedEl)) {
         snappedEl = null;
-        cursorEl.classList.remove('is-magnetic');
-        cursorDotEl.classList.remove('is-magnetic');
+        if (cursorEl) cursorEl.classList.remove('is-magnetic');
+        if (cursorDotEl) cursorDotEl.classList.remove('is-magnetic');
         if (cursorIconEl) cursorIconEl.style.borderRadius = '';
       }
 
       if (!related || !related.closest || !related.closest('.work-card, .fs-media-frame, .fs-thumb')) {
-        cursorEl.classList.remove('is-viewing-card');
-        cursorDotEl.classList.remove('is-viewing-card');
+        if (cursorEl) cursorEl.classList.remove('is-viewing-card');
+        if (cursorDotEl) cursorDotEl.classList.remove('is-viewing-card');
       }
 
       if (!related || !related.closest || !related.closest('.form-input, textarea, select')) {
-        cursorEl.classList.remove('is-text');
-        cursorDotEl.classList.remove('is-text');
+        if (cursorEl) cursorEl.classList.remove('is-text');
+        if (cursorDotEl) cursorDotEl.classList.remove('is-text');
       }
 
       if (!related || !related.closest || !related.closest('a, button, [role="button"], .fs-icon-btn, .fs-scroll-change-btn')) {
-        cursorEl.classList.remove('is-hovering');
-        cursorDotEl.classList.remove('is-hovering');
+        if (cursorEl) cursorEl.classList.remove('is-hovering');
+        if (cursorDotEl) cursorDotEl.classList.remove('is-hovering');
       }
     });
 
