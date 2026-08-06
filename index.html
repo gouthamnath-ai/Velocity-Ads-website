@@ -3514,59 +3514,7 @@
       });
     }
 
-    // Unified Smooth Momentum Scroll (Apple-like)
-    let currentScroll = window.scrollY;
-    let targetScroll = window.scrollY;
-    let isScrolling = false;
-    const easeFactor = 0.20; // fast, ultra-smooth momentum factor
-
-    window.addEventListener('wheel', (e) => {
-      // Don't intercept scroll inside input elements or textareas
-      if (e.target.closest('textarea, input, select')) return;
-
-      e.preventDefault();
-
-      // Calculate delta
-      let delta = e.deltaY;
-      if (e.deltaMode === 1) { // line mode
-        delta *= 40;
-      } else if (e.deltaMode === 2) { // page mode
-        delta *= window.innerHeight;
-      }
-
-      targetScroll += delta * 0.85; // slightly scale down scroll distance for premium feel
-      targetScroll = Math.max(0, Math.min(targetScroll, document.documentElement.scrollHeight - window.innerHeight));
-
-      startSmoothLoop();
-    }, { passive: false });
-
-    // Sync scroll when using browser scrollbars directly
-    window.addEventListener('scroll', () => {
-      if (!isScrolling) {
-        currentScroll = window.scrollY;
-        targetScroll = window.scrollY;
-      }
-    }, { passive: true });
-
-    function startSmoothLoop() {
-      if (!isScrolling) {
-        isScrolling = true;
-        requestAnimationFrame(smoothScrollLoop);
-      }
-    }
-
-    function smoothScrollLoop() {
-      const diff = targetScroll - currentScroll;
-      if (Math.abs(diff) > 0.5) {
-        currentScroll += diff * easeFactor;
-        window.scrollTo(0, currentScroll);
-        requestAnimationFrame(smoothScrollLoop);
-      } else {
-        currentScroll = targetScroll;
-        window.scrollTo(0, currentScroll);
-        isScrolling = false;
-      }
-    }
+    // Lenis Smooth Scroll Engine handles unified wheel momentum natively
 
     // Keydown scroll support for accessibility
     window.addEventListener('keydown', (e) => {
